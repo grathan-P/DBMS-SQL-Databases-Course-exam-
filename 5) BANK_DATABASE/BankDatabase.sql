@@ -216,10 +216,10 @@ select * from CUSTOMER -- CUSTOMER (customer-name#: string, customer-street: str
 
 SELECT C1.CNAME 
 FROM CUSTOMER C1 
-WHERE NOT EXISTS( SELECT DISTINCT B1.BCITY 
+WHERE NOT EXISTS( SELECT B1.BCITY 
                    FROM BRANCH B1 
-                   WHERE B1.BCITY NOT IN( SELECT DISTINCT B.BCITY 
-                                          FROM BRANCH B,ACCOUNT A,DEPOSITOR D 
+                   WHERE B1.BCITY NOT IN( SELECT B.BCITY 
+                                          FROM ACCOUNT A,DEPOSITOR D 
                                           WHERE A.BNAME=B.BNAME 
                                           AND A.ACCNO=D.ACCNO 
                                           AND D.CNAME=C1.CNAME))
