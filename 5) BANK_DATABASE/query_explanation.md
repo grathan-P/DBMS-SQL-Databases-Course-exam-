@@ -95,10 +95,10 @@ Find all customers who have accounts in branches located in every city (at least
 ```sql
 SELECT C1.CNAME 
 FROM CUSTOMER C1 
-WHERE NOT EXISTS( SELECT DISTINCT B1.BCITY 
+WHERE NOT EXISTS( SELECT B1.BCITY 
                    FROM BRANCH B1 
-                   WHERE B1.BCITY NOT IN( SELECT DISTINCT B.BCITY 
-                                          FROM BRANCH B, ACCOUNT A, DEPOSITOR D 
+                   WHERE B1.BCITY NOT IN( SELECT B.BCITY 
+                                          FROM ACCOUNT A, DEPOSITOR D 
                                           WHERE A.BNAME = B.BNAME 
                                           AND A.ACCNO = D.ACCNO 
                                           AND D.CNAME = C1.CNAME))
@@ -143,10 +143,10 @@ ACCOUNT (BNAME) ← DEPOSITOR (ACCNO) ← CUSTOMER (CNAME)
 ### Key Concepts
 
 - **NOT EXISTS**: Verifies result set is empty (all cities covered)
-- **DISTINCT operator**: Removes duplicate cities
 - **NOT IN with subquery**: Identifies missing cities
 - **Set difference logic**: Cities in BRANCH but not in customer's accounts
 - **Universal quantification**: Customer must have accounts in ALL cities
+- **Simplified join**: Direct reference to BRANCH B through account-branch relationship
 
 ### Query Behavior Notes
 
