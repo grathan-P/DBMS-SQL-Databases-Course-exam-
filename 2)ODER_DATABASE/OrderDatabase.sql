@@ -181,13 +181,11 @@ select * from WAREHOUSE;  -- WAREHOUSE (warehouse #: int, city: string)
 
 
 -- ============================================================================
--- QUERY 1: Produce customer listing with order count and average order amount
+-- QUERY 1: Produce a listing: CUSTNAME, #oforders, AVG_ORDER_AMT, where the middle column is the total numbers of orders by the customer and the last column is the average order amount for that customer.
 -- ============================================================================
 -- Purpose: Generate report showing customer name, total orders, and average order amount
 -- Tables Used: CUSTOMER, C_ORDER
 -- Expected Output: Customer name, number of orders, average order amount
-
--- 1. Produce a listing: CUSTNAME, #oforders, AVG_ORDER_AMT, where the middle column is the total numbers of orders by the customer and the last column is the average order amount for that customer.
 
 select c.CNAME , COUNT(distinct o.ORDERID) as num_of_order , AVG(o.ORDAMT) as avg_order_amt 
 from CUSTOMER c
@@ -196,14 +194,12 @@ ON c.CUSTID = o.CUSTID
 GROUP BY c.CNAME;
 
 -- ============================================================================
--- QUERY 2: Items with multiple orders and multi-warehouse shipments
+-- QUERY 2: For each item that has more than two orders , list the item, number of orders that are shipped from atleast two warehouses and total quantity of items shipped.
 -- ============================================================================
 -- Purpose: For each item ordered more than twice, show number of orders and total quantity
 -- Tables Used: ORDERITEM, SHIPMENT
 -- Expected Output: Item ID, number of orders, total quantity
 
--- 2. For each item that has more than two orders , list the item, number of orders that are shipped from atleast two warehouses and total quantity of items shipped. 
-  
 
 SELECT oi.ITEMID,COUNT(DISTINCT oi.ORDERID) AS num_orders,SUM(oi.qty) AS total_quantity
 FROM ORDERITEM oi
@@ -214,13 +210,11 @@ HAVING COUNT(DISTINCT oi.ORDERID) > 2 and COUNT(DISTINCT s.WARID)>=2;
 
 
 -- ============================================================================
--- QUERY 3: Customers who ordered every item produced by company
+-- QUERY 3: List the customers who have ordered for every item that the company produces 
 -- ============================================================================
 -- Purpose: Identify customers with complete item coverage (ordered all items)
 -- Tables Used: CUSTOMER, C_ORDER, ORDERITEM, ITEM
 -- Expected Output: Customer names
-
--- 3. List the customers who have ordered for every item that the company produces 
 
 SELECT c.CUSTID, c.CNAME
 FROM CUSTOMER c

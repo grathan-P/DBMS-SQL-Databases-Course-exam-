@@ -140,10 +140,7 @@ SELECT * FROM PARTICIPATED;
 -- Tables Used: ACCIDENT, PARTICIPATED
 -- Expected Output: Single integer value representing count of distinct drivers
 
-SELECT * FROM PERSON; -- PERSON (driver-id #: String, name: string, address: string)  
-SELECT * FROM CAR;    -- CAR (regno#: string, model: string, year: int)  
 SELECT * FROM ACCIDENT;  -- ACCIDENT (report-number#: int, accd-date: date, location: string) 
-SELECT * FROM OWNS;  -- OWNS (driver-id #: string, regno#: string)  
 SELECT * FROM PARTICIPATED;  -- PARTICIPATED (driver-id#: string, Regno#: string, report-number#: int, damage amount: int)  
 
 select count (distinct P.driverid) as car_owner
@@ -159,9 +156,6 @@ and year(A.accdate) = '1989';
 -- Expected Output: Single integer value representing count of accidents
 
 SELECT * FROM PERSON; -- PERSON (driver-id #: String, name: string, address: string)  
-SELECT * FROM CAR;    -- CAR (regno#: string, model: string, year: int)  
-SELECT * FROM ACCIDENT;  -- ACCIDENT (report-number#: int, accd-date: date, location: string) 
-SELECT * FROM OWNS;  -- OWNS (driver-id #: string, regno#: string)  
 SELECT * FROM PARTICIPATED;  -- PARTICIPATED (driver-id#: string, Regno#: string, report-number#: int, damage amount: int)  
 
 select count(P.driverid) as number_of_accident
@@ -176,10 +170,6 @@ where ps.driverid=p.driverid and ps.name='john smith';
 -- WHERE Condition: REGNO='KA-12' AND REPORTNO=1
 -- Action: Set DMGAMT to 3000
 
-SELECT * FROM PERSON; -- PERSON (driver-id #: String, name: string, address: string)  
-SELECT * FROM CAR;    -- CAR (regno#: string, model: string, year: int)  
-SELECT * FROM ACCIDENT;  -- ACCIDENT (report-number#: int, accd-date: date, location: string) 
-SELECT * FROM OWNS;  -- OWNS (driver-id #: string, regno#: string)  
 SELECT * FROM PARTICIPATED;  -- PARTICIPATED (driver-id#: string, Regno#: string, report-number#: int, damage amount: int)  
 
 UPDATE PARTICIPATED 
